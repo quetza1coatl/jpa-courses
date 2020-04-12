@@ -38,7 +38,7 @@
     </dependencies>
 
     <build>
-        <finalName>jpa-lectures</finalName>
+        <finalName>jpa_courses</finalName>
         <defaultGoal>package</defaultGoal>
         <plugins>
             <plugin>

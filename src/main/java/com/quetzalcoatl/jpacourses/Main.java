@@ -1,13 +1,25 @@
 package com.quetzalcoatl.jpacourses;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 public class Main {
 
-    private static final EntityManagerFactory FACTORY = Persistence.createEntityManagerFactory("hsqldb");
-
     public static void main(String[] args) {
-        System.out.println(FACTORY.isOpen());
+        SimpleRepository repository = new SimpleRepository();
+        //create
+        repository.create(1, "Paul", 31);
+        repository.create(2, "Ralf", 22);
+        repository.create(3, "Betty", 37);
+        repository.create(4, "Hanna", 21);
+        //get all
+        repository.getAll().forEach(System.out::println);
+        //changes
+        repository.update(1, "new_name", 66);
+        repository.delete(2);
+        //get all
+        repository.getAll().forEach(System.out::println);
+
+
+
+
     }
 }
