@@ -1,5 +1,5 @@
 INSERT INTO person(id, name, location, birth_date)
-VALUES (1, 'Tom', 'Moon', now()),
-       (2, 'Jerry', 'Jupiter', now()),
-       (3, 'mister_X', 'NA', now()),
-       (4, 'Tom', 'Phobos', now());
+VALUES (1001, 'Tom', 'Moon', now()),
+       (1002, 'Jerry', 'Jupiter', now()),
+       (1003, 'mister_X', 'NA', now()),
+       (1004, 'Tom', 'Phobos', now());

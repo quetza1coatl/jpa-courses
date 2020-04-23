@@ -1,4 +1,4 @@
-package com.quetzalcoatl.jpacourses.jdbc;
+package com.quetzalcoatl.jpacourses.repository.jdbc;
 
 import com.quetzalcoatl.jpacourses.entity.Person;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
