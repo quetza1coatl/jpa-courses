@@ -1,5 +1,5 @@
-INSERT INTO person(id, name, location, birth_date)
-VALUES (1001, 'Tom', 'Moon', now()),
-       (1002, 'Jerry', 'Jupiter', now()),
-       (1003, 'mister_X', 'NA', now()),
-       (1004, 'Tom', 'Phobos', now());
+INSERT INTO course(id, name)
+VALUES
+(1001, 'Bio'),
+(1002, 'Math'),
+(1003, 'Deep learning');
