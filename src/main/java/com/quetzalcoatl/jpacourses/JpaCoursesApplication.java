@@ -1,6 +1,7 @@
 package com.quetzalcoatl.jpacourses;
 
 import com.quetzalcoatl.jpacourses.repository.CourseRepository;
+import com.quetzalcoatl.jpacourses.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -9,7 +10,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class JpaCoursesApplication implements CommandLineRunner {
     @Autowired
-    private CourseRepository repository;
+    private CourseRepository courseRepository;
+    @Autowired
+    private StudentRepository studentRepository;
 
     public static void main(String[] args) {
 		SpringApplication.run(JpaCoursesApplication.class, args);
@@ -17,6 +20,8 @@ public class JpaCoursesApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args){
-        repository.play();
+//    	courseRepository.play();
+        studentRepository.saveStudentWithPassport();
+
 	}
 }

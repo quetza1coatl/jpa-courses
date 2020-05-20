@@ -15,6 +15,7 @@ public class Course {
     @GeneratedValue
     private Long id;
 
+    @Column(nullable = false)
     private String name;
 
     @CreationTimestamp
