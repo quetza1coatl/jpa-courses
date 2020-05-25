@@ -47,4 +47,20 @@ public class StudentRepository {
 
     }
 
+    @Transactional
+    public void someOperationWithPersistenceContext(){ // Start transaction, creating a persistence context ( = hibernate 'session').
+
+        //Persistence Context with all managed entity:
+
+        Student student = em.find(Student.class, 2001L); //Persistence context: student
+
+        // if Passport is LAZY - without transaction we will catch an exception.
+        Passport passport = student.getPassport(); //Persistence context: student, passport
+
+        passport.setNumber("ZZZZ00000"); //Persistence context: student, passport++
+
+        student.setName("MariaDB)"); //Persistence context: student++, passport++
+
+    } // End of transaction. Entities was updated.
+
 }
