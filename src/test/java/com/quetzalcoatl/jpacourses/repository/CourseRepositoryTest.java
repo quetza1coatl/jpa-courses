@@ -1,10 +1,15 @@
 package com.quetzalcoatl.jpacourses.repository;
 
 import com.quetzalcoatl.jpacourses.entity.Course;
+import com.quetzalcoatl.jpacourses.entity.Review;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.transaction.annotation.Transactional;
+import javax.persistence.EntityManager;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,6 +18,11 @@ class CourseRepositoryTest {
 
     @Autowired
     CourseRepository repository;
+
+    @Autowired
+    EntityManager em;
+
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Test
     void findById() {
@@ -37,5 +47,17 @@ class CourseRepositoryTest {
         assertEquals("Bio - updated", courseUpdated.getName());
     }
 
+    @Test
+    @Transactional
+    void retrieveReviewsForCourse(){
+        Course course = repository.findById(1003L);
+        logger.info("{}", course.getReviews());
+    }
+
+    @Test
+    void retrieveCourseForReview(){
+        Review review = em.find(Review.class, 4003L);
+        logger.info("{}", review.getCourse());
+    }
 
 }

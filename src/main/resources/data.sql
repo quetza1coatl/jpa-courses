@@ -19,8 +19,8 @@ VALUES
 (2003, 'Mathew', 3003);
 
 
-INSERT INTO review(id, description, rating)
+INSERT INTO review(id, description, rating, course_id)
 VALUES
-(4001, 'so-so', '3.5'),
-(4002, 'norm', '4'),
-(4003, 'super', '5');
+(4001, 'so-so', '3.5', 1001),
+(4002, 'norm', '4', 1003),
+(4003, 'super', '5',1003);

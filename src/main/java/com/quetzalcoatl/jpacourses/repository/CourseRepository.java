@@ -1,11 +1,15 @@
 package com.quetzalcoatl.jpacourses.repository;
 
 import com.quetzalcoatl.jpacourses.entity.Course;
+import com.quetzalcoatl.jpacourses.entity.Review;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @Repository
 public class CourseRepository {
@@ -13,21 +17,23 @@ public class CourseRepository {
     @PersistenceContext
     private EntityManager em;
 
-    public Course findById(Long id){
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    public Course findById(Long id) {
         return em.find(Course.class, id);
     }
 
     @Transactional
-    public void deleteById(Long id){
+    public void deleteById(Long id) {
         Course c = findById(id);
         em.remove(c);
     }
 
     @Transactional
-    public Course save(Course course){
-        if(course.getId() == null){
+    public Course save(Course course) {
+        if (course.getId() == null) {
             em.persist(course);
-        }else{
+        } else {
             em.merge(course);
         }
 
@@ -35,7 +41,7 @@ public class CourseRepository {
     }
 
     @Transactional
-    public void play(){
+    public void play() {
 
         /* changes after persist */
         Course c1 = new Course("New course_1");
@@ -64,7 +70,7 @@ public class CourseRepository {
         c4.setName("Updated course_4"); // will be saved to DB.
 
 
-       /* refresh */
+        /* refresh */
         Course c5 = new Course("New course_5");
         em.persist(c5);
         c5.setName("Updated course_5");
@@ -72,5 +78,17 @@ public class CourseRepository {
         c5.setName("New value after flush for course_5");
         // after this operation c5.name will be "Updated course_5" again
         em.refresh(c5);
+    }
+
+    @Transactional
+    public void addReviewsForCourse(Long courseId, List<Review> reviews) {
+
+        Course course = findById(courseId);
+        logger.info("{}", course.getReviews());
+        reviews.forEach( review -> {
+            course.addReview(review);
+            review.setCourse(course);
+            em.persist(review);
+        });
     }
 }
