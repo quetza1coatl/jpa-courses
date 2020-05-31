@@ -1,5 +1,6 @@
 package com.quetzalcoatl.jpacourses.repository;
 
+import com.quetzalcoatl.jpacourses.entity.Course;
 import com.quetzalcoatl.jpacourses.entity.Passport;
 import com.quetzalcoatl.jpacourses.entity.Student;
 import org.springframework.stereotype.Repository;
@@ -62,5 +63,13 @@ public class StudentRepository {
         student.setName("MariaDB)"); //Persistence context: student++, passport++
 
     } // End of transaction. Entities was updated.
+
+    @Transactional
+    public void insertStudentAndCourse(Student student, Course course){
+        em.persist(student);
+        em.persist(course);
+        student.addCourse(course);
+        course.addStudent(student);
+    }
 
 }

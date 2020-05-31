@@ -22,6 +22,9 @@ public class Course {
     @OneToMany(mappedBy = "course", cascade = {CascadeType.ALL})
     private List<Review> reviews = new ArrayList<>();
 
+    @ManyToMany(mappedBy = "courses")
+    private List<Student> students = new ArrayList<>();
+
     @CreationTimestamp
     private LocalDateTime createdTime;
 
@@ -59,6 +62,18 @@ public class Course {
 
     public void removeReview(Review review) {
         reviews.remove(review);
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void addStudent(Student student) {
+        students.add(student);
+    }
+
+    public void removeStudent(Student student) {
+        students.remove(student);
     }
 
     public LocalDateTime getCreatedTime() {

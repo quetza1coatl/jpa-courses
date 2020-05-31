@@ -1,6 +1,8 @@
 package com.quetzalcoatl.jpacourses;
 
+import com.quetzalcoatl.jpacourses.entity.Course;
 import com.quetzalcoatl.jpacourses.entity.Review;
+import com.quetzalcoatl.jpacourses.entity.Student;
 import com.quetzalcoatl.jpacourses.repository.CourseRepository;
 import com.quetzalcoatl.jpacourses.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,10 @@ public class JpaCoursesApplication implements CommandLineRunner {
         reviews.add(new Review("Not bad, but...", "4.4"));
         reviews.add(new Review("What a perfect english!!!", "4.7"));
         courseRepository.addReviewsForCourse(1003L, reviews);
+
+        Student student = new Student("Student_1");
+        Course course = new Course("Microservices");
+        studentRepository.insertStudentAndCourse(student, course);
 
 	}
 }
