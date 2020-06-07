@@ -32,8 +32,8 @@ public class JpaCoursesApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args){
-//    	courseRepository.play();
-//        studentRepository.saveStudentWithPassport();
+/*    	courseRepository.play();
+        studentRepository.saveStudentWithPassport();
         List<Review> reviews = new ArrayList<>();
         reviews.add(new Review("Not bad, but...", "4.4"));
         reviews.add(new Review("What a perfect english!!!", "4.7"));
@@ -45,9 +45,10 @@ public class JpaCoursesApplication implements CommandLineRunner {
 
         employeeRepository.insert(new FullTimeEmployee("Mike", new BigDecimal(10000)));
         employeeRepository.insert(new PartTimeEmployee("Jane", new BigDecimal(50)));
-//        logger.info("Employees: {}", employeeRepository.getAll());
+        logger.info("Employees: {}", employeeRepository.getAll());
         logger.info("Full time Employees: {}", employeeRepository.getAllFullTimeEmployee());
         logger.info("Part time Employees: {}", employeeRepository.getAllPartTimeEmployee());
+        */
 
 	}
 }

@@ -29,8 +29,5 @@ VALUES
 INSERT INTO student_course(student_id, course_id)
 VALUES
 (2001, 1001),
-(2002, 1003),
 (2003, 1001),
-(2001, 1002),
-(2001, 1003),
 (2003, 1002);
