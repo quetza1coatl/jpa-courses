@@ -2,7 +2,14 @@ INSERT INTO course(id, name, created_time, updated_time)
 VALUES
 (1001, 'Bio', now(), now()),
 (1002, 'Math', now(), now()),
-(1003, 'Deep learning', now(), now());
+(1003, 'Deep learning', now(), now()),
+(1004, 'Dummy1', now(), now()),
+(1005, 'Dummy2', now(), now()),
+(1006, 'Dummy3', now(), now()),
+(1007, 'Dummy4', now(), now()),
+(1008, 'Dummy5', now(), now()),
+(1009, 'Dummy6', now(), now());
+
 
 
 INSERT INTO passport(id, number)
