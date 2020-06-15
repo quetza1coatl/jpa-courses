@@ -10,6 +10,7 @@ import java.util.List;
 
 @Entity
 @NamedQuery(name = Course.GET_ALL, query = "SELECT c FROM Course c")
+@Cacheable
 public class Course {
     public static final String GET_ALL = "courses_get_all";
 
@@ -20,7 +21,7 @@ public class Course {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "course", cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
     private List<Review> reviews = new ArrayList<>();
 
     @ManyToMany(mappedBy = "courses")

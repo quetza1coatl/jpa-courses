@@ -30,6 +30,20 @@ class CourseRepositoryTest {
     }
 
     @Test
+    @Transactional
+    void findById_L1_Cache() {
+        Course course = repository.findById(1001L);
+        logger.info("First Course Retrieved {}", course);
+
+        Course course1 = repository.findById(1001L);
+        logger.info("First Course Retrieved again {}", course1);
+
+        assertEquals("Bio", course.getName());
+
+        assertEquals("Bio", course1.getName());
+    }
+
+    @Test
     @DirtiesContext
     void deleteById(){
         repository.deleteById(1001L);
