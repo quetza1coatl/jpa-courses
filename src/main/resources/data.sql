@@ -1,14 +1,14 @@
-INSERT INTO course(id, name, created_time, updated_time)
+INSERT INTO course(id, name, created_time, updated_time, is_deleted)
 VALUES
-(1001, 'Bio', now(), now()),
-(1002, 'Math', now(), now()),
-(1003, 'Deep learning', now(), now()),
-(1004, 'Dummy1', now(), now()),
-(1005, 'Dummy2', now(), now()),
-(1006, 'Dummy3', now(), now()),
-(1007, 'Dummy4', now(), now()),
-(1008, 'Dummy5', now(), now()),
-(1009, 'Dummy6', now(), now());
+(1001, 'Bio', now(), now(), false),
+(1002, 'Math', now(), now(), false),
+(1003, 'Deep learning', now(), now(), false),
+(1004, 'Dummy1', now(), now(), false),
+(1005, 'Dummy2', now(), now(), false),
+(1006, 'Dummy3', now(), now(), false),
+(1007, 'Dummy4', now(), now(), false),
+(1008, 'Dummy5', now(), now(), false),
+(1009, 'Dummy6', now(), now(), false);
 
 
 
@@ -28,9 +28,9 @@ VALUES
 
 INSERT INTO review(id, description, rating, course_id)
 VALUES
-(4001, 'so-so', '3.5', 1001),
-(4002, 'norm', '4', 1003),
-(4003, 'super', '5',1003);
+(4001, 'so-so', 'THREE', 1001),
+(4002, 'norm', 'FOUR', 1003),
+(4003, 'super', 'FIVE', 1003);
 
 
 INSERT INTO student_course(student_id, course_id)

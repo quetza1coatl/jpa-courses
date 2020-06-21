@@ -52,6 +52,16 @@ class CourseRepositoryTest {
 
     @Test
     @DirtiesContext
+    @Transactional
+    void preRemoveTest(){
+        Course byId = repository.findById(1001L);
+        assertFalse(byId.isDeleted());
+        repository.deleteById(1001L);
+        assertTrue(byId.isDeleted());
+    }
+
+    @Test
+    @DirtiesContext
     void updateCourse(){
         Course course = repository.findById(1001L);
         course.setName("Bio - updated");

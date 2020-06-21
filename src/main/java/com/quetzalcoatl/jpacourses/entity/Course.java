@@ -2,7 +2,10 @@ package com.quetzalcoatl.jpacourses.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.Where;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -11,6 +14,8 @@ import java.util.List;
 @Entity
 @NamedQuery(name = Course.GET_ALL, query = "SELECT c FROM Course c")
 @Cacheable
+@SQLDelete(sql="update course set is_deleted=true where id=?")
+@Where(clause = "is_deleted = false")
 public class Course {
     public static final String GET_ALL = "courses_get_all";
 
@@ -34,6 +39,8 @@ public class Course {
     @UpdateTimestamp
     private LocalDateTime updatedTime;
 
+    private boolean isDeleted;
+
     protected Course() {
     }
 
@@ -42,6 +49,11 @@ public class Course {
         this.name = name;
     }
 
+
+    @PreRemove
+    private void preRemove(){
+        isDeleted = true;
+    }
 
     public String getName() {
         return name;
@@ -95,6 +107,14 @@ public class Course {
         this.updatedTime = updatedTime;
     }
 
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
+    }
+
     @Override
     public String toString() {
         return "Course{" +
@@ -102,6 +122,7 @@ public class Course {
                 ", name='" + name + '\'' +
                 ", createdTime=" + createdTime +
                 ", updatedTime=" + updatedTime +
+                ", isDeleted=" + isDeleted +
                 '}';
     }
 }

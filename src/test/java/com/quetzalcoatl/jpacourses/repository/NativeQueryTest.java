@@ -23,14 +23,14 @@ class NativeQueryTest {
 
     @Test
     void NativeBasic() {
-        Query query = em.createNativeQuery("SELECT * FROM course", Course.class);
+        Query query = em.createNativeQuery("SELECT * FROM course WHERE is_deleted=0", Course.class);
         List<Course> result = query.getResultList();
         result.forEach( r -> logger.info(r.toString()));
     }
 
     @Test
     void NativeWhereWithPosParams() {
-        Query query = em.createNativeQuery("SELECT * FROM course WHERE id = ?", Course.class);
+        Query query = em.createNativeQuery("SELECT * FROM course WHERE id = ? AND is_deleted=0", Course.class);
         query.setParameter(1, 1002L);
         Course result = ( Course) query.getSingleResult();
         logger.info(result.toString());
@@ -38,7 +38,7 @@ class NativeQueryTest {
 
     @Test
     void NativeWhereWithNamedParams() {
-        Query query = em.createNativeQuery("SELECT * FROM course WHERE id = :id", Course.class);
+        Query query = em.createNativeQuery("SELECT * FROM course WHERE id = :id AND is_deleted=0", Course.class);
         query.setParameter("id", 1002L);
         Course result = ( Course) query.getSingleResult();
         logger.info(result.toString());
