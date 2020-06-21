@@ -12,12 +12,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@NamedQuery(name = Course.GET_ALL, query = "SELECT c FROM Course c")
+@NamedQueries(
+        value = {
+                @NamedQuery(name = Course.GET_ALL, query = "SELECT c FROM Course c"),
+                @NamedQuery(name = Course.GET_ALL_WITH_JOINED_STUDENTS, query = "SELECT c FROM Course c JOIN FETCH c.students s")
+        }
+)
 @Cacheable
 @SQLDelete(sql="update course set is_deleted=true where id=?")
 @Where(clause = "is_deleted = false")
 public class Course {
     public static final String GET_ALL = "courses_get_all";
+    public static final String GET_ALL_WITH_JOINED_STUDENTS = "courses_get_all_join_students";
 
     @Id
     @GeneratedValue
